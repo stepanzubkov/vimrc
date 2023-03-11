@@ -18,3 +18,5 @@ To update config in repository:
 chmod +x update.sh
 ./update.sh
 ```
+
+*lua config is coming soon...*
