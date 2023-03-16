@@ -21,9 +21,9 @@ opt.listchars = 'trail:~'
 opt.et = true
 
 -- Save .swap files to another directory
-opt.backupdir = '~/.config/nvim/backup/'
-opt.dir = '~/.config/nvim/swap/'
-opt.undodir = '~/.config/nvim/undo/'
+opt.backupdir = 'backup/'
+opt.dir = 'swap/'
+opt.undodir = 'undo/'
 
 -- GUI settings
 wo.number = true
@@ -36,7 +36,7 @@ opt.clipboard = 'unnamedplus' -- Standart system clipboard
 cmd 'filetype plugin indent on'
 cmd 'filetype plugin on'
 cmd 'syntax on'
-cmd 'colorscheme habamax'
+cmd 'colorscheme onedark'
 
 -- Different useful settings
 

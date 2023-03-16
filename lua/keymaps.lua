@@ -4,17 +4,29 @@ local g = vim.g
 local wo = vim.wo
 local default_opts = {noremap = true, silent = true}
 
+-- Tab, Shift-Tab for cycle moving between tabs
+map.set('n', '<Tab>', ':BufferLineCycleNext<CR>', {silent = true})
+map.set('n', '<S-Tab>', ':BufferLineCyclePrev<CR>', {silent = true})
+
 -- C-hjkl for moving between tabs
 map.set('n', '<C-h>', ':tabprevious<CR>', default_opts)
 map.set('n', '<C-l>', ':tabnext<CR>', default_opts)
 map.set('n', '<C-k>', ':tabfirst<CR>', default_opts)
 map.set('n', '<C-j>', ':tablast<CR>', default_opts)
 
+-- Nvim tree
+map.set('n', '<M-t>', ':NvimTreeToggle<CR>', default_opts)
+map.set('n', '<M-f>', ':NvimTreeFocus<CR>', default_opts)
+
 -- C-\ for split line by cursor
 map.set('', '<C-\\>', 'i<CR><ESC>', default_opts)
 
 -- <F8> for config reloading
-map.set('n', '<F8>', ':so ~/.config/nvim/init.lua<CR>', default_opts)
+map.set('n', '<F8>', [[
+:so ~/.config/nvim/lua/keymaps.lua
+:so ~/.config/nvim/lua/settings.lua
+:so ~/.config/nvim/lua/plugins.lua
+]], default_opts)
 
 -- Disable arrows 
 map.set('n', '<Left>', ':echoe "Use h"<CR>', default_opts)
