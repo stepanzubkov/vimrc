@@ -1,4 +1,9 @@
 local cmd = vim.cmd
+local mason_packages = {
+  'pyright',
+  'flake8',
+  'lua_ls',
+}
 
 cmd 'packadd packer.nvim'
 
@@ -9,7 +14,21 @@ return require('packer').startup(function (use)
   use { 'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
-        require('lualine').setup()
+        require('lualine').setup {
+          sections = {
+            lualine_b = {
+              'branch', 'diff',
+              {
+                'diagnostics',
+                -- Table of diagnostic sources, available sources are:
+                --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
+                -- or a function that returns a table as such:
+                --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
+                sources = { 'nvim_diagnostic' },
+              },
+            }
+          }
+      }
     end, }
   -- Themes
   use 'navarasu/onedark.nvim'
@@ -29,7 +48,45 @@ return require('packer').startup(function (use)
   -- Russian commands
   use 'powerman/vim-plugin-ruscmd'
   -- Surrounding (, {, [, ', "
-  use 'pope/vim-surround'
+  use 'tpope/vim-surround'
   -- QML Syntax highlighting
   use 'peterhoeg/vim-qml'
+  -- Search files
+  use { 'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = function() require('telescope').setup {} end, }
+  -- Collection of configurations for built-in LSP client
+  use { 'williamboman/mason.nvim',
+    config = function() require('mason').setup{} end,
+    requires = { {'neovim/nvim-lspconfig', user_config = function() end},
+                 {'williamboman/mason-lspconfig.nvim',
+                    ensure_installed = mason_packages,
+                    automatic_installation = true,} },
+  }
+
+  -- Start all lsp servers
+  local lspconfig = require('lspconfig')
+  for _, v in ipairs(mason_packages) do
+    lspconfig[v].setup{}
+  end
+
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('trouble').setup {
+        icons = false,
+        height = 15,
+      }
+    end
+  }
+  -- Autocomplete with lsp
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'saadparwaiz1/cmp_luasnip'
+  -- Autocomplete with filesystem paths
+  use 'hrsh7th/cmp-path'
+  -- Snippets plugin
+  use 'L3MON4D3/LuaSnip'
 end)

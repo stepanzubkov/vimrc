@@ -14,6 +14,14 @@ map.set('n', '<C-l>', ':tabnext<CR>', default_opts)
 map.set('n', '<C-k>', ':tabfirst<CR>', default_opts)
 map.set('n', '<C-j>', ':tablast<CR>', default_opts)
 
+-- Search files
+map.set('n', ',ff', ':Telescope find_files<CR>', default_opts)
+map.set('n', ',fg', ':Telescope live_grep<CR>', default_opts)
+map.set('n', ',fb', ':Telescope buffers<CR>', default_opts)
+
+-- Lsp messages in split window
+map.set('n', '<C-?>', ':TroubleToggle<CR>', default_opts)
+
 -- Nvim tree
 map.set('n', '<M-t>', ':NvimTreeToggle<CR>', default_opts)
 map.set('n', '<M-f>', ':NvimTreeFocus<CR>', default_opts)
@@ -34,7 +42,7 @@ map.set('n', '<Right>', ':echoe "Use l"<CR>', default_opts)
 map.set('n', '<Up>', ':echoe "Use k"<CR>', default_opts)
 map.set('n', '<Down>', ':echoe "Use j"<CR>', default_opts)
 
-function toggleRelativenumber() 
+local function toggleRelativenumber()
     if wo.relativenumber == true then
         wo.relativenumber = false
     else
