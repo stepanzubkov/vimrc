@@ -85,6 +85,7 @@ return require('packer').startup(function (use)
       require('trouble').setup {
         icons = false,
         height = 15,
+        auto_preview = false,
       }
     end
   }

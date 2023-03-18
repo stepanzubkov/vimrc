@@ -23,8 +23,8 @@ map.set('n', ',fb', ':Telescope buffers<CR>', default_opts)
 map.set('n', '<C-?>', ':TroubleToggle<CR>', default_opts)
 
 -- Nvim tree
-map.set('n', '<M-t>', ':NvimTreeToggle<CR>', default_opts)
-map.set('n', '<M-f>', ':NvimTreeFocus<CR>', default_opts)
+map.set('n', 'tt', ':NvimTreeToggle<CR>', default_opts)
+map.set('n', 'tf', ':NvimTreeFocus<CR>', default_opts)
 
 -- C-\ for split line by cursor
 map.set('', '<C-\\>', 'i<CR><ESC>', default_opts)
