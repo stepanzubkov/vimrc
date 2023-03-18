@@ -1,9 +1,38 @@
--- Stepan Zubkov's Nvim settings config. Createed at 2023
 local wo = vim.wo
 local opt = vim.opt
 local cmd = vim.cmd
 local exec = vim.api.nvim_exec
 
+local null_ls = require('null-ls')
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+local kind_icons = {
+  Text = "",
+  Method = "m",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
+  Interface = "",
+  Module = "",
+  Property = "",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
 
 -- Indents
 opt.tabstop = 4
@@ -59,6 +88,7 @@ cmd [[
 autocmd BufNewFile,BufRead *.html set filetype=htmldjango 
 ]] -- Autoformat jinja files
 
+-- Configure Lsp messages to showing it on related lines
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {
@@ -69,36 +99,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+-- Configure Autocomplete with lsp and other sources
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -116,13 +117,15 @@ cmp.setup {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
-    ["<Tab>"] = cmp.mapping(function(_)
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
+      else
+        fallback()
       end
     end, {
       "i",
@@ -172,4 +175,9 @@ cmp.setup {
     ghost_text = false,
     native_menu = false,
   },
+}
+
+-- Configure linters
+null_ls.setup{
+  sources = { null_ls.builtins.diagnostics.flake8 },
 }

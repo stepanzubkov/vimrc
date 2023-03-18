@@ -1,9 +1,17 @@
 local cmd = vim.cmd
-local mason_packages = {
+
+local lspconfig = require('lspconfig')
+local mason_lsp_servers = {
   'pyright',
-  'flake8',
   'lua_ls',
 }
+local mason_linters = {
+  'flake8',
+}
+local mason_packages = {}
+for _,v in pairs(mason_lsp_servers) do table.insert(mason_packages,v) end
+for _,v in pairs(mason_linters) do table.insert(mason_packages,v) end
+
 
 cmd 'packadd packer.nvim'
 
@@ -61,12 +69,12 @@ return require('packer').startup(function (use)
     requires = { {'neovim/nvim-lspconfig', user_config = function() end},
                  {'williamboman/mason-lspconfig.nvim',
                     ensure_installed = mason_packages,
-                    automatic_installation = true,} },
+                    automatic_installation = true,},
+                 {'jose-elias-alvarez/null-ls.nvim',}},
   }
 
   -- Start all lsp servers
-  local lspconfig = require('lspconfig')
-  for _, v in ipairs(mason_packages) do
+  for _, v in ipairs(mason_lsp_servers) do
     lspconfig[v].setup{}
   end
 
