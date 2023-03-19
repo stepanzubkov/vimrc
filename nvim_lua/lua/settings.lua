@@ -51,9 +51,9 @@ opt.listchars = 'trail:~'
 opt.et = true
 
 -- Save .swap files to another directory
-opt.backupdir = "$HOME/.config/nvim/backup//"
-opt.dir = "$HOME/.config/nvim/swap//"
-opt.undodir = "$HOME/.config/nvim/undo//"
+opt.backupdir = vim.fn.stdpath('config') .. '/backup'
+opt.dir = vim.fn.stdpath('config') .. '/swap'
+opt.undodir = vim.fn.stdpath('config') .. '/undo'
 
 -- GUI settings
 wo.number = true
