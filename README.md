@@ -10,7 +10,9 @@ To install one of this configs:
 git clone git@github.com:stepan-zubkov/vimrc.git
 cd vimrc/
 chmod +x install.sh
-./install.sh (config_name) -e (nvim or vim)
+./install.sh (config_name)
+\# For vim
+\# ./install.sh -e vim (config_name)
 ```
 
 Also see `./install.sh --help`
