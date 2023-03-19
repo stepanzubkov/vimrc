@@ -20,7 +20,11 @@ map.set('n', ',fg', ':Telescope live_grep<CR>', default_opts)
 map.set('n', ',fb', ':Telescope buffers<CR>', default_opts)
 
 -- Lsp messages in split window
-map.set('n', '<C-?>', ':TroubleToggle<CR>', default_opts)
+map.set('n', 'tl', ':TroubleToggle<CR>', default_opts)
+
+-- Lsp refactoring keys. See https://github.com/neovim/nvim-lspconfig#Automatically-launching-language-servers
+map.set('n', '<space>rn', vim.lsp.buf.rename, default_opts)
+
 
 -- Nvim tree
 map.set('n', 'tt', ':NvimTreeToggle<CR>', default_opts)
