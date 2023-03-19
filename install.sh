@@ -1,9 +1,8 @@
 #!/bin/bash
 VERSION=1.0
-config_name=$1
 
 function help {
-    echo "Usage: ./install.sh config_name [OPTIONS]"
+    echo "Usage: ./install.sh (config_name) [OPTIONS]"
     echo "    Vim config installer, Version $VERSION" 
     echo "Options:"
     echo "    --editor, -e STRING   install config for specified editor (vim, nvim). Defaults to nvim."
@@ -23,17 +22,17 @@ function parse_args {
 }
 
 while [[ "$#" -ge 3 ]]; do
-    parse_args "$2" "$3"
+    parse_args "$1" "$2"
     shift 2
 done
 
 
-if [[ $config_name == --help ]]; then
+if [[ $1 == --help ]]; then
     help
-elif [[ -z $config_name ]]; then
+elif [[ -z $1 ]]; then
     echo "Config is not specified!" >&2
     exit 1
-elif [[ ! -e $config_name ]]; then
+elif [[ ! -e $1 ]]; then
     echo "Config is not found!" >&2
     exit 1
 else
@@ -46,15 +45,15 @@ else
         exit 1
     fi
 
-    echo "Installing config '$config_name' to '$config_dir'"
-    read -p "ATTENTION: Your current config in '$config_name' will be lost! Continue? (y/n): " continue_install
+    echo "Installing config '$1' to '$config_dir'"
+    read -p "ATTENTION: Your current config in $config_dir' will be lost! Continue? (y/n): " continue_install
     if [[ $continue_install != y ]]; then
         exit 1
     fi
 
     rm -rf $config_dir/*.lua $config_dir/*.vim $config_dir/lua
-    cp -r $config_name/* $config_dir
+    cp -r $1/* $config_dir
 
-    echo "Config '$config_name' was successfuly installed!"
+    echo "Config '$1' was successfuly installed!"
 fi
 

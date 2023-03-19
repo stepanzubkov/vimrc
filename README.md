@@ -1,16 +1,19 @@
 # Vimrc
-My *neovim* configs.
+My *neovim* and *vim* configs.
 
-`init.vim` - Config in Vimscript
+`nvim_old` - Old neovim config in Vimscript
+`nvim_lua` - Neovim config in lua
 
-To install this config:
+To install one of this configs:
 
 ```bash
 git clone git@github.com:stepan-zubkov/vimrc.git
 cd vimrc/
 chmod +x install.sh
-./install.sh
+./install.sh (config_name) -e (nvim or vim)
 ```
+
+Also see `./install.sh --help`
 
 To update config in repository:
 
@@ -19,4 +22,3 @@ chmod +x update.sh
 ./update.sh
 ```
 
-*lua config is coming soon...*
