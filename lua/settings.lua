@@ -58,7 +58,7 @@ opt.undodir = 'undo/'
 -- GUI settings
 wo.number = true
 opt.colorcolumn = '100' -- Right border at 100 char
-opt.scrolloff = 7 -- Count of lines after cursor when scrolling
+opt.scrolloff = 300 -- Count of lines after cursor when scrolling
 opt.mouse = 'a'
 opt.termguicolors = true
 opt.cursorline = true -- Highlight line with cursor
