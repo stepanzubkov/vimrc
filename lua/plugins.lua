@@ -98,4 +98,22 @@ return require('packer').startup(function (use)
   use 'hrsh7th/cmp-path'
   -- Snippets plugin
   use 'L3MON4D3/LuaSnip'
+
+  -- HTML plugins
+  -- Highlights open and close tags
+  use 'idanarye/breeze.vim'
+  -- Auto close tags
+  use 'alvan/vim-closetag'
+  -- Highlights #ffffff
+  use 'ap/vim-css-color'
+
+  -- Beutiful start page
+  use 'mhinz/vim-startify'
+  -- Comments all by `gc`
+  use { 'numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end }
+  -- Plugin that operates commands with [ and ] (ex: ]p - paste text in prev line, [p - in next line)
+  use 'tpope/vim-unimpaired'
+  -- Autopairs
+  use 'windwp/nvim-autopairs'
 end)
