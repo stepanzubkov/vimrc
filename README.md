@@ -2,6 +2,7 @@
 My *neovim* and *vim* configs.
 
 `nvim_old` - Old neovim config in Vimscript
+
 `nvim_lua` - Neovim config in lua
 
 To install one of this configs:
