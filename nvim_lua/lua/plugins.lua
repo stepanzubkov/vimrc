@@ -13,6 +13,13 @@ local mason_packages = {}
 for _,v in pairs(mason_lsp_servers) do table.insert(mason_packages,v) end
 for _,v in pairs(mason_linters) do table.insert(mason_packages,v) end
 
+function Wordcount()
+  --[[ Function for count of words in *.txt files ]]
+  if string.match(vim.fn.expand('%'), '.txt$') then
+    return vim.fn.wordcount().words .. ' words'
+  end
+  return ''
+end
 
 cmd 'packadd packer.nvim'
 
@@ -35,6 +42,9 @@ return require('packer').startup(function (use)
                 --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
                 sources = { 'nvim_diagnostic' },
               },
+            },
+            lualine_y = {
+              'progress', { Wordcount }
             }
           }
       }
