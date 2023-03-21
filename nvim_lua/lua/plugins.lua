@@ -4,6 +4,7 @@ local lspconfig = require('lspconfig')
 local mason_lsp_servers = {
   'pyright',
   'lua_ls',
+  'qml_lsp',
 }
 local mason_linters = {
   'flake8',
@@ -49,6 +50,7 @@ return require('packer').startup(function (use)
     config = function()
         require("bufferline").setup {
           options = {
+            mode = 'tabs',
             separator_style = 'slant',
           }
         }
