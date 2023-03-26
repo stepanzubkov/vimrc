@@ -71,6 +71,8 @@ return require('packer').startup(function (use)
   use 'tpope/vim-surround'
   -- QML Syntax highlighting
   use 'peterhoeg/vim-qml'
+  -- Markdown preview in browser
+  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
   -- Search files
   use { 'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} },
