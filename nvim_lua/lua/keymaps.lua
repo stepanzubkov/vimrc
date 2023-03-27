@@ -2,7 +2,7 @@ local opt = vim.opt
 local map = vim.keymap
 local g = vim.g
 local wo = vim.wo
-local default_opts = {noremap = true, silent = true}
+local default_opts = {noremap = true, silent = false}
 
 -- Tab, Shift-Tab for cycle moving between tabs
 map.set('n', '<Tab>', ':BufferLineCycleNext<CR>', {silent = true})
@@ -55,3 +55,4 @@ local function toggleRelativenumber()
 end
 
 map.set('n', '<F9>', toggleRelativenumber, default_opts)
+
