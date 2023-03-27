@@ -2,7 +2,7 @@
 VERSION=1.0
 
 function help {
-    echo "Usage: ./install.sh (config_name) [OPTIONS]"
+    echo "Usage: $0 (config_name) [OPTIONS]"
     echo "    Vim config installer, Version $VERSION" 
     echo "Options:"
     echo "    --editor, -e STRING   install config for specified editor (vim, nvim). Defaults to nvim."
