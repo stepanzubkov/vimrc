@@ -71,11 +71,11 @@ else
         cp "$config_dir/update.sh" "$2"
     fi
 
-    pushd "$2"
+    pushd "$2" > /dev/null
     git add .
     read -p "Git commit message: " git_commit_message
     git commit -m "$git_commit_message"
     git push
-    popd
+    popd > /dev/null
     echo "Your config was successfully updated!"
 fi
