@@ -56,3 +56,8 @@ end
 
 map.set('n', '<F9>', toggleRelativenumber, default_opts)
 
+-- Go to start and end of line
+map.set('n', 'H', '^', default_opts)
+map.set('n', 'L', '$', default_opts)
+map.set('o', 'H', '^', default_opts)
+map.set('o', 'L', '$', default_opts)
