@@ -5,6 +5,41 @@ My *neovim* and *vim* configs.
 
 `nvim_lua` - Neovim config in lua
 
+**WARNING:** Now this config is not working. But if you want to use it, reproduce this steps:
+1. Fetch `fix-plugins` branch
+
+```
+git fetch origin
+```
+
+2. Move to tihs branch
+
+```
+git checkout fix-plugins
+```
+
+2. Run install script
+
+```
+./install.sh nvim_lua
+```
+
+3. Open nvim and type `:PackerInstall`
+4. Close nvim
+5. Move to `main` branch
+
+```
+git checkout main
+```
+6. Run install script
+
+```
+./install.sh nvim_lua
+```
+
+7. Done, You can use nvim
+
+
 To install one of this configs:
 
 ```bash
