@@ -66,7 +66,7 @@ opt.clipboard = 'unnamedplus' -- Standart system clipboard
 cmd 'filetype plugin indent on'
 cmd 'filetype plugin on'
 cmd 'syntax on'
-cmd 'colorscheme onedark'
+cmd 'colorscheme dayfox'
 
 -- Different useful settings
 

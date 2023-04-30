@@ -1,10 +1,11 @@
 local cmd = vim.cmd
 
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
 local mason_lsp_servers = {
   'pyright',
   'lua_ls',
   'qml_lsp',
+  'clangd',
 }
 local mason_linters = {
   'flake8',
@@ -51,6 +52,8 @@ return require('packer').startup(function (use)
     end, }
   -- Themes
   use 'navarasu/onedark.nvim'
+  use 'shaunsingh/solarized.nvim'
+  use 'EdenEast/nightfox.nvim'
   -- File tree
   use { 'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -88,9 +91,9 @@ return require('packer').startup(function (use)
   }
 
   -- Start all lsp servers
-  for _, v in ipairs(mason_lsp_servers) do
-    lspconfig[v].setup{}
-  end
+ --for _, v in ipairs(mason_lsp_servers) do
+ --  lspconfig[v].setup{}
+ --end
 
   use {
     'folke/trouble.nvim',
