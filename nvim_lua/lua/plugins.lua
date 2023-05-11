@@ -1,19 +1,5 @@
 local cmd = vim.cmd
 
--- local lspconfig = require('lspconfig')
-local mason_lsp_servers = {
-  'pyright',
-  'lua_ls',
-  'qml_lsp',
-  'clangd',
-}
-local mason_linters = {
-  'flake8',
-}
-local mason_packages = {}
-for _,v in pairs(mason_lsp_servers) do table.insert(mason_packages,v) end
-for _,v in pairs(mason_linters) do table.insert(mason_packages,v) end
-
 function Wordcount()
   --[[ Function for count of words in *.txt files ]]
   if string.match(vim.fn.expand('%'), '.txt$') then
@@ -54,10 +40,38 @@ return require('packer').startup(function (use)
   use 'navarasu/onedark.nvim'
   use 'shaunsingh/solarized.nvim'
   use 'EdenEast/nightfox.nvim'
+  -- File manager like netrw, but can be edited like normal buffer
+  use {
+    'stevearc/oil.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('oil').setup {
+        view_options = {
+          show_hidden_files = true,
+        },
+      }
+    end 
+  }
   -- File tree
-  use { 'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require'nvim-tree'.setup {} end, }
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = { 
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require('neo-tree').setup {
+        close_if_last_window = true,
+        default_component_configs = {
+          name = {
+            trailing_slash = true,
+          },
+        },
+      }
+    end,
+  }
   -- Buffer line in the top
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
     config = function()
@@ -83,11 +97,17 @@ return require('packer').startup(function (use)
   -- Collection of configurations for built-in LSP client
   use { 'williamboman/mason.nvim',
     config = function() require('mason').setup{} end,
-    requires = { {'neovim/nvim-lspconfig', user_config = function() end},
-                 {'williamboman/mason-lspconfig.nvim',
-                    ensure_installed = mason_packages,
-                    automatic_installation = true,},
-                 {'jose-elias-alvarez/null-ls.nvim',}},
+    requires = { 
+      {
+        'neovim/nvim-lspconfig',
+        user_config = function()
+          require('lspconfig').lua_ls.setup {}
+        end,
+      },
+      {'williamboman/mason-lspconfig.nvim',
+        ensure_installed = mason_packages,
+        automatic_installation = true,},
+      {'jose-elias-alvarez/null-ls.nvim',}},
   }
 
   -- Start all lsp servers

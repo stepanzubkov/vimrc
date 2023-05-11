@@ -1,5 +1,6 @@
 local wo = vim.wo
 local opt = vim.opt
+local g = vim.g
 local cmd = vim.cmd
 local exec = vim.api.nvim_exec
 
@@ -34,6 +35,9 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
+
+-- Map leader key to <space>
+g.mapleader = ' '
 
 -- Indents
 opt.tabstop = 4
