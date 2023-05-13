@@ -40,9 +40,9 @@ map.set('', '<C-\\>', 'i<CR><ESC>', default_opts)
 
 -- <F8> for config reloading
 map.set('n', '<F8>', [[
-:so ~/.config/nvim/lua/keymaps.lua
 :so ~/.config/nvim/lua/settings.lua
 :so ~/.config/nvim/lua/plugins.lua
+:so ~/.config/nvim/lua/keymaps.lua
 ]], default_opts)
 
 -- Disable arrows 
