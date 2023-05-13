@@ -15,29 +15,34 @@ map.set('n', '<C-k>', ':tabfirst<CR>', default_opts)
 map.set('n', '<C-j>', ':tablast<CR>', default_opts)
 
 -- Search files
-map.set('n', ',ff', ':Telescope find_files<CR>', default_opts)
-map.set('n', ',fg', ':Telescope live_grep<CR>', default_opts)
-map.set('n', ',fb', ':Telescope buffers<CR>', default_opts)
+map.set('n', '<leader>ff', ':Telescope find_files<CR>', default_opts)
+map.set('n', '<leader>fg', ':Telescope live_grep<CR>', default_opts)
+map.set('n', '<leader>fb', ':Telescope buffers<CR>', default_opts)
 
 -- Lsp messages in split window
-map.set('n', 'tl', ':TroubleToggle<CR>', default_opts)
+map.set('n', '<leader>tl', ':TroubleToggle<CR>', default_opts)
 
 -- Lsp refactoring keys. See https://github.com/neovim/nvim-lspconfig#Automatically-launching-language-servers
-map.set('n', '<space>rn', vim.lsp.buf.rename, default_opts)
+map.set('n', '<leader>rn', vim.lsp.buf.rename, default_opts)
 
 
--- Nvim tree
-map.set('n', 'tt', ':NvimTreeToggle<CR>', default_opts)
-map.set('n', 'tf', ':NvimTreeFocus<CR>', default_opts)
+-- Neo tree
+map.set('n', '<leader>tt', ':NeoTreeFocusToggle<CR>', default_opts)
+map.set('n', '<leader>tf', ':NeoTreeFocus<CR>', default_opts)
+
+-- Oil (NetRW like file explorer)
+map.set('n', '<leader>ot', ':tabe .<CR>', default_opts)
+map.set('n', '<leader>oe', ':e .<CR>', default_opts)
+map.set('n', '<leader>os', ':30vs .<CR>', default_opts)
 
 -- C-\ for split line by cursor
 map.set('', '<C-\\>', 'i<CR><ESC>', default_opts)
 
 -- <F8> for config reloading
 map.set('n', '<F8>', [[
-:so ~/.config/nvim/lua/keymaps.lua
 :so ~/.config/nvim/lua/settings.lua
 :so ~/.config/nvim/lua/plugins.lua
+:so ~/.config/nvim/lua/keymaps.lua
 ]], default_opts)
 
 -- Disable arrows 

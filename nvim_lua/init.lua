@@ -1,3 +1,4 @@
-require('settings')
-require('keymaps')
 require('plugins')
+require('keymaps')
+--require('settings')
+
