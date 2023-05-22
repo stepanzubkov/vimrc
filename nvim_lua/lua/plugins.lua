@@ -143,4 +143,15 @@ return require('packer').startup(function (use)
     'windwp/nvim-autopairs',
     config = function() require('configurations.npairs') end
   }
+  -- Dark/light theme switcher
+  use {
+    'eliseshaffer/darklight.nvim',
+    config = function ()
+      require('darklight').setup({
+        mode = 'colorscheme',
+        light_mode_colorscheme = 'dayfox',
+        dark_mode_colorscheme = 'onedark',
+      })
+    end
+  }
 end)

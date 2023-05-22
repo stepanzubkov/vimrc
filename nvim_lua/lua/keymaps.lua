@@ -45,12 +45,6 @@ map.set('n', '<F8>', [[
 :so ~/.config/nvim/lua/keymaps.lua
 ]], default_opts)
 
--- Disable arrows 
-map.set('n', '<Left>', ':echoe "Use h"<CR>', default_opts)
-map.set('n', '<Right>', ':echoe "Use l"<CR>', default_opts)
-map.set('n', '<Up>', ':echoe "Use k"<CR>', default_opts)
-map.set('n', '<Down>', ':echoe "Use j"<CR>', default_opts)
-
 local function toggleRelativenumber()
     if wo.relativenumber == true then
         wo.relativenumber = false
@@ -59,7 +53,17 @@ local function toggleRelativenumber()
     end
 end
 
+-- Toggling relativenumber setting
 map.set('n', '<F9>', toggleRelativenumber, default_opts)
+
+-- Switch colorschemes
+map.set('n', '<F10>', ':lua require("darklight").color_switch()<CR>', default_opts)
+
+-- Disable arrows 
+map.set('n', '<Left>', ':echoe "Use h"<CR>', default_opts)
+map.set('n', '<Right>', ':echoe "Use l"<CR>', default_opts)
+map.set('n', '<Up>', ':echoe "Use k"<CR>', default_opts)
+map.set('n', '<Down>', ':echoe "Use j"<CR>', default_opts)
 
 -- Go to start and end of line
 map.set('n', 'H', '^', default_opts)
