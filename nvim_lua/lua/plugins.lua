@@ -78,15 +78,17 @@ return require('packer').startup(function (use)
 
   -- Collection of configurations for built-in LSP client
   use { 'williamboman/mason.nvim',
-  config = function() require('mason').setup{} end,
+  config = function()
+    require('mason').setup{} 
+    local lspconfig = require('lspconfig')
+    lspconfig.lua_ls.setup { autostart = true, }
+    lspconfig.pyright.setup { autostart = true, }
+    lspconfig.clangd.setup { autostart = true, }
+  end,
     requires = {
       { 'neovim/nvim-lspconfig',
         config = function()
           require('configurations.lsp')
-          local lspconfig = require('lspconfig')
-          lspconfig.lua_ls.setup { autostart = true, }
-          lspconfig.pyright.setup { autostart = true, }
-          lspconfig.clangd.setup { autostart = true, }
         end,
       },
       {'williamboman/mason-lspconfig.nvim',

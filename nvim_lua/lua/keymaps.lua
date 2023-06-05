@@ -24,7 +24,8 @@ map.set('n', '<leader>tl', ':TroubleToggle<CR>', default_opts)
 
 -- Lsp refactoring keys. See https://github.com/neovim/nvim-lspconfig#Automatically-launching-language-servers
 map.set('n', '<leader>rn', vim.lsp.buf.rename, default_opts)
-
+map.set('n', '<leader>hh', vim.lsp.buf.hover, default_opts)
+map.set('n', '<leader>ca', vim.lsp.buf.code_action, default_opts)
 
 -- Neo tree
 map.set('n', '<leader>tt', ':NeoTreeFocusToggle<CR>', default_opts)

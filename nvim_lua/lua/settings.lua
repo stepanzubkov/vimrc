@@ -3,6 +3,7 @@ local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd
 local exec = vim.api.nvim_exec
+local create_autocmd = vim.api.nvim_create_autocmd
 
 -- Map leader key to <space>
 g.mapleader = ' '
@@ -54,8 +55,13 @@ augroup end
 ]], false) -- Highlight yanked text for a second
 
 cmd [[
-autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,htmljinja setlocal shiftwidth=2 tabstop=2
+autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,htmljinja setlocal shiftwidth=2 tabstop=2
 ]] -- 2 spaces for selected filetypes
+
+create_autocmd({"FileType"}, {
+    pattern = "python",
+    callback = require("language_servers.sourcery").start_server,
+})
 
 cmd [[
 autocmd BufNewFile,BufRead *.html set filetype=htmldjango 
