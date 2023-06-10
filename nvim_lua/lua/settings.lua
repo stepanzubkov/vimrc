@@ -1,4 +1,5 @@
 local wo = vim.wo
+local bo = vim.bo
 local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd
@@ -37,32 +38,54 @@ opt.termguicolors = true
 opt.cursorline = true -- Highlight line with cursor
 opt.clipboard = 'unnamedplus' -- Standart system clipboard
 cmd 'filetype plugin indent on'
-cmd 'filetype plugin on'
-cmd 'syntax on'
-cmd 'colorscheme dayfox'
+cmd 'filetype plugin on' cmd 'syntax on' cmd 'colorscheme dayfox'
 
--- Different useful settings
+-- Autocommands --
 
-cmd [[
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-]]  -- Remember last edited with nvim line
+function swallow_output(callback, ...) 
+  local old_print = print
+  print = function(...) end
 
-exec([[
-augroup YankHighlight
-autocmd!
-autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
-augroup end
-]], false) -- Highlight yanked text for a second
+  pcall(callback, arg)
 
-cmd [[
-autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,htmljinja setlocal shiftwidth=2 tabstop=2
-]] -- 2 spaces for selected filetypes
+  print = old_print
+end
 
-create_autocmd({"FileType"}, {
-    pattern = "python",
-    callback = require("language_servers.sourcery").start_server,
+-- Remember last edited with nvim line
+create_autocmd({"BufReadPost"}, {
+    pattern = "*",
+    callback = function()
+        if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+            vim.api.nvim_win_set_cursor(0, vim.api.nvim_buf_get_mark(0, '"'))
+        end
+    end,
 })
 
-cmd [[
-autocmd BufNewFile,BufRead *.html set filetype=htmldjango 
-]] -- Autoformat jinja files
+-- Highlight yanked text for a second
+create_autocmd({"TextYankPost"}, {
+    pattern = "*",
+    group = "YankHighlight",
+    callback = function()
+        swallow_output(function()
+            vim.highlight.on_yank({higroup = "IncSearch", timeout = 1000})
+        end)
+    end,
+})
+
+-- 2 spaces for selected filetypes
+create_autocmd({"FileType"}, {
+    pattern = "xml,html,xhtml,css,scss,yaml,htmljinja,htmldjango",
+    callback = function()
+        nvim_set_option_value("shiftwidth", 2, {scope = "local"})
+        nvim_set_option_value("tabstop", 2, {scope = "local"})
+    end,
+})
+
+-- Autoformat jinja files
+create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = "*.html",
+    callback = function()
+        bo.filetype = "htmldjango"
+    end,
+})
+
