@@ -62,9 +62,10 @@ create_autocmd({"BufReadPost"}, {
 })
 
 -- Highlight yanked text for a second
+local yank_hl = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 create_autocmd({"TextYankPost"}, {
     pattern = "*",
-    group = "YankHighlight",
+    group = yank_hl,
     callback = function()
         swallow_output(function()
             vim.highlight.on_yank({higroup = "IncSearch", timeout = 1000})
@@ -76,8 +77,8 @@ create_autocmd({"TextYankPost"}, {
 create_autocmd({"FileType"}, {
     pattern = "xml,html,xhtml,css,scss,yaml,htmljinja,htmldjango",
     callback = function()
-        nvim_set_option_value("shiftwidth", 2, {scope = "local"})
-        nvim_set_option_value("tabstop", 2, {scope = "local"})
+        vim.api.nvim_set_option_value("shiftwidth", 2, {scope = "local"})
+        vim.api.nvim_set_option_value("tabstop", 2, {scope = "local"})
     end,
 })
 
