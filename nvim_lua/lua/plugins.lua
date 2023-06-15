@@ -79,7 +79,7 @@ return require('packer').startup(function (use)
   -- Collection of configurations for built-in LSP client
   use { 'williamboman/mason.nvim',
   config = function()
-    require('mason').setup{} 
+    require('mason').setup{}
     local lspconfig = require('lspconfig')
     lspconfig.lua_ls.setup { autostart = true, }
     lspconfig.pyright.setup { autostart = true, }
@@ -104,7 +104,7 @@ return require('packer').startup(function (use)
     requires = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('trouble').setup {
-        icons = true,
+        icons = false,
         height = 15,
         auto_preview = false,
       }
@@ -156,4 +156,6 @@ return require('packer').startup(function (use)
       })
     end
   }
+  -- Editable quickfix list
+  use { 'gabrielpoca/replacer.nvim' }
 end)

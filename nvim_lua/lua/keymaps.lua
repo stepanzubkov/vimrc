@@ -36,6 +36,9 @@ map.set('n', '<leader>ot', ':tabe .<CR>', default_opts)
 map.set('n', '<leader>oe', ':e .<CR>', default_opts)
 map.set('n', '<leader>os', ':30vs .<CR>', default_opts)
 
+-- Replacer (Editable Quicklist)
+map.set('n', '<leader>qf', ':lua require("replacer").run()<CR>', default_opts)
+
 -- C-\ for split line by cursor
 map.set('', '<C-\\>', 'i<CR><ESC>', default_opts)
 
