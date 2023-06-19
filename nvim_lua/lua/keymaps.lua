@@ -72,3 +72,13 @@ map.set('n', '<Down>', ':echoe "Use j"<CR>', default_opts)
 -- Go to start and end of line
 map.set({'n', 'o', 'v'}, 'H', '^', default_opts)
 map.set({'n', 'o', 'v'}, 'L', '$', default_opts)
+
+-- Scroll split back (b) and forward (f) for one screen
+map.set('n', '<C-A-b>', '<C-w>p<C-b><C-w>p', default_opts)
+map.set('n', '<C-A-f>', '<C-w>p<C-f><C-w>p', default_opts)
+
+-- Scroll split upward (u) and down (d) for a half of screen
+map.set('n', '<C-A-u>', '<C-w>p<C-u><C-w>p', default_opts)
+map.set('n', '<C-A-d>', '<C-w>p<C-d><C-w>p', default_opts)
+
+
