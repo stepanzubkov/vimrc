@@ -70,7 +70,5 @@ map.set('n', '<Up>', ':echoe "Use k"<CR>', default_opts)
 map.set('n', '<Down>', ':echoe "Use j"<CR>', default_opts)
 
 -- Go to start and end of line
-map.set('n', 'H', '^', default_opts)
-map.set('n', 'L', '$', default_opts)
-map.set('o', 'H', '^', default_opts)
-map.set('o', 'L', '$', default_opts)
+map.set({'n', 'o', 'v'}, 'H', '^', default_opts)
+map.set({'n', 'o', 'v'}, 'L', '$', default_opts)
