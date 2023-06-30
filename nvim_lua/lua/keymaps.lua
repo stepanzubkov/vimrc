@@ -38,6 +38,17 @@ map.set('n', '<leader>os', ':30vs .<CR>', default_opts)
 
 -- Replacer (Editable Quicklist)
 map.set('n', '<leader>qf', ':lua require("replacer").run()<CR>', default_opts)
+-- Other qf-list keymaps
+-- Open document diagnostics in qflist
+map.set('n', '<leader>qd', function()
+    vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0), 'r'))
+end, default_opts)
+-- Open workspace diagnostics in qflist
+map.set('n', '<A-q><A-d>', function()
+    vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(), 'r'))
+end, default_opts)
+-- Clear qflist
+map.set('n', '<leader>qc', function() vim.fn.setqflist({}, 'r') end, default_opts)
 
 -- C-\ for split line by cursor
 map.set('', '<C-\\>', 'i<CR><ESC>', default_opts)
