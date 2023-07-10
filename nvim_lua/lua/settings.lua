@@ -1,9 +1,11 @@
+-- Settings & options main file.
+-- Always load this file before keymaps.lua file, because <leader>-keymaps will not work instead.
+
 local wo = vim.wo
 local bo = vim.bo
 local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd
-local exec = vim.api.nvim_exec
 local create_autocmd = vim.api.nvim_create_autocmd
 
 -- Map leader key to <space>

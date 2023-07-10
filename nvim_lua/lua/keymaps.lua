@@ -1,6 +1,6 @@
-local opt = vim.opt
+-- Keymaps main file
+
 local map = vim.keymap
-local g = vim.g
 local wo = vim.wo
 local default_opts = {noremap = true, silent = false}
 
@@ -90,6 +90,4 @@ map.set('n', '<C-A-f>', '<C-w>p<C-f><C-w>p', default_opts)
 
 -- Scroll split upward (u) and down (d) for a half of screen
 map.set('n', '<C-A-u>', '<C-w>p<C-u><C-w>p', default_opts)
-map.set('n', '<C-A-d>', '<C-w>p<C-d><C-w>p', default_opts)
-
 

@@ -1,3 +1,6 @@
+-- Plugins main file.
+-- Plugins' configs longer than 5 lines must be moved to configurations folder.
+
 local cmd = vim.cmd
 
 local mason_packages = {
@@ -61,7 +64,7 @@ return require('packer').startup(function (use)
     config = function()
         require("bufferline").setup {
             options = {
-                mode = 'tabs',
+                mode = 'buffers',
                 separator_style = 'slant',
             }
         }
@@ -85,8 +88,8 @@ return require('packer').startup(function (use)
         require('mason').setup{}
         local lspconfig = require('lspconfig')
         lspconfig.lua_ls.setup { autostart = true, }
-        lspconfig.pyright.setup { autostart = true, }
         lspconfig.clangd.setup { autostart = true, }
+        lspconfig.jedi_language_server.setup { autostart = true, }
     end,
     requires = {
         { 'neovim/nvim-lspconfig',
@@ -100,65 +103,65 @@ return require('packer').startup(function (use)
     config = function() require('mason-lspconfig').setup {} end},
     {'jose-elias-alvarez/null-ls.nvim',
     config = function() require('configurations.null_ls') end,}},
-}
+    }
 
-use {
-    'folke/trouble.nvim',
-    requires = 'nvim-tree/nvim-web-devicons',
-    config = function()
-        require('trouble').setup {
-            icons = false,
-            height = 15,
-            auto_preview = false,
-        }
-    end
-}
--- Autocomplete with lsp
-use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-buffer',
-        'saadparwaiz1/cmp_luasnip',
-        -- Autocomplete with filesystem paths
-        'hrsh7th/cmp-path',
-        -- Snippets plugin
-        'L3MON4D3/LuaSnip',
-    },
-    config = function() require('configurations.cmp') end,
-}
+    use {
+        'folke/trouble.nvim',
+        requires = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require('trouble').setup {
+                icons = false,
+                height = 15,
+                auto_preview = false,
+            }
+        end
+    }
+    -- Autocomplete with lsp
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'saadparwaiz1/cmp_luasnip',
+            -- Autocomplete with filesystem paths
+            'hrsh7th/cmp-path',
+            -- Snippets plugin
+            'L3MON4D3/LuaSnip',
+        },
+        config = function() require('configurations.cmp') end,
+    }
 
--- HTML plugins
--- Highlights open and close tags
-use 'idanarye/breeze.vim'
--- Auto close tags
-use 'alvan/vim-closetag'
--- Highlights #ffffff
-use 'ap/vim-css-color'
+    -- HTML plugins
+    -- Highlights open and close tags
+    use 'idanarye/breeze.vim'
+    -- Auto close tags
+    use 'alvan/vim-closetag'
+    -- Highlights #ffffff
+    use 'ap/vim-css-color'
 
--- Beutiful start page
-use 'mhinz/vim-startify'
--- Comments all by `gc`
-use { 'numToStr/Comment.nvim',
-config = function() require('Comment').setup() end }
--- Plugin that operates commands with [ and ] (ex: ]p - paste text in prev line, [p - in next line)
-use 'tpope/vim-unimpaired'
--- Autopairs
-use {
-    'windwp/nvim-autopairs',
-    config = function() require('configurations.npairs') end
-}
--- Dark/light theme switcher
-use {
-    'eliseshaffer/darklight.nvim',
-    config = function ()
-        require('darklight').setup({
-            mode = 'colorscheme',
-            light_mode_colorscheme = 'dayfox',
-            dark_mode_colorscheme = 'onedark',
-        })
-    end
-}
--- Editable quickfix list
-use { 'gabrielpoca/replacer.nvim' }
+    -- Beutiful start page
+    use 'mhinz/vim-startify'
+    -- Comments all by `gc`
+    use { 'numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end }
+    -- Plugin that operates commands with [ and ] (ex: ]p - paste text in prev line, [p - in next line)
+    use 'tpope/vim-unimpaired'
+    -- Autopairs
+    use {
+        'windwp/nvim-autopairs',
+        config = function() require('configurations.npairs') end
+    }
+    -- Dark/light theme switcher
+    use {
+        'eliseshaffer/darklight.nvim',
+        config = function ()
+            require('darklight').setup({
+                mode = 'colorscheme',
+                light_mode_colorscheme = 'dayfox',
+                dark_mode_colorscheme = 'onedark',
+            })
+        end
+    }
+    -- Editable quickfix list
+    use { 'gabrielpoca/replacer.nvim' }
 end)
