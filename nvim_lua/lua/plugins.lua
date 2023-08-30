@@ -13,7 +13,8 @@ local mason_packages = {
 
 function Wordcount()
     --[[ Function for count of words in *.txt files ]]
-    if string.match(vim.fn.expand('%'), '.txt$') then
+    filename = string.gsub(vim.fn.expand('%'), '.+%.', '')
+    if filename == 'txt' or filename == 'md' then
         return vim.fn.wordcount().words .. ' words'
     end
     return ''
