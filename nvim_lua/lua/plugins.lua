@@ -76,7 +76,10 @@ return require('packer').startup(function (use)
     -- QML Syntax highlighting
     use 'peterhoeg/vim-qml'
     -- Markdown preview in browser
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+    use {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    }
     -- Search files
     use { 'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -89,7 +92,7 @@ return require('packer').startup(function (use)
         local lspconfig = require('lspconfig')
         lspconfig.lua_ls.setup { autostart = true, }
         lspconfig.clangd.setup { autostart = true, }
-        lspconfig.jedi_language_server.setup { autostart = true, }
+        lspconfig.pyright.setup { autostart = true, }
     end,
     requires = {
         { 'neovim/nvim-lspconfig',
@@ -164,4 +167,6 @@ return require('packer').startup(function (use)
     }
     -- Editable quickfix list
     use { 'gabrielpoca/replacer.nvim' }
+
+    use 'lervag/vimtex'
 end)
