@@ -90,7 +90,6 @@ map.set('n', '<C-A-f>', '<C-w>p<C-f><C-w>p', default_opts)
 
 -- Scroll split upward (u) and down (d) for a half of screen
 map.set('n', '<C-A-u>', '<C-w>p<C-u><C-w>p', default_opts)
-
 -- Send text to the HELL
-map.set('n', '<leader>d', '"_d', default_opts)
-map.set('n', '<leader>c', '"_c', default_opts)
+map.set({'n', 'v'}, '<leader>d', '"_d', default_opts)
+map.set({'n', 'v'}, '<leader>c', '"_c', default_opts)

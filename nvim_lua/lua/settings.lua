@@ -33,6 +33,7 @@ opt.undodir = vim.fn.stdpath('config') .. '/undo'
 
 -- GUI settings
 wo.relativenumber = true
+wo.number = true
 opt.colorcolumn = '100' -- Right border at 100 char
 opt.scrolloff = 300 -- Count of lines after cursor when scrolling
 opt.mouse = 'a'
