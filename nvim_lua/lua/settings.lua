@@ -21,7 +21,7 @@ opt.cin = true -- C-style Autoindent
 
 -- Show trailing whitespaces
 opt.list = true
-opt.listchars = 'trail:~'
+opt.listchars = 'trail:~,tab:  '
 
 -- Autocomplete
 opt.et = true
@@ -41,7 +41,9 @@ opt.termguicolors = true
 opt.cursorline = true -- Highlight line with cursor
 opt.clipboard = 'unnamedplus' -- Standart system clipboard
 cmd 'filetype plugin indent on'
-cmd 'filetype plugin on' cmd 'syntax on' cmd 'colorscheme dayfox'
+cmd 'filetype plugin on'
+cmd 'syntax on'
+cmd 'colorscheme dayfox'
 
 -- Autocommands --
 

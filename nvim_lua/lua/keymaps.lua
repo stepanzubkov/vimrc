@@ -68,6 +68,14 @@ local function toggleRelativenumber()
     end
 end
 
+local function toggleDiagnostic()
+    if vim.diagnostic.is_disabled() then
+        vim.diagnostic.enable()
+    else
+        vim.diagnostic.disable()
+    end
+end
+
 -- Toggling relativenumber setting
 map.set('n', '<F9>', toggleRelativenumber, default_opts)
 
@@ -90,6 +98,9 @@ map.set('n', '<C-A-f>', '<C-w>p<C-f><C-w>p', default_opts)
 
 -- Scroll split upward (u) and down (d) for a half of screen
 map.set('n', '<C-A-u>', '<C-w>p<C-u><C-w>p', default_opts)
+
 -- Send text to the HELL
 map.set({'n', 'v'}, '<leader>d', '"_d', default_opts)
 map.set({'n', 'v'}, '<leader>c', '"_c', default_opts)
+
+map.set({'n'}, '<leader>td', toggleDiagnostic, default_opts)

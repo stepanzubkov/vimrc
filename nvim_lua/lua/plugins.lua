@@ -65,9 +65,11 @@ return require('packer').startup(function (use)
     config = function()
         require("bufferline").setup {
             options = {
-                mode = 'buffers',
-                separator_style = 'slant',
-            }
+                mode = 'tabs',
+                separator_style = 'thin',
+                numbers = 'none',
+                diagnostics = 'nvim_lsp',
+            },
         }
     end, }
     -- Russian commands
@@ -94,6 +96,7 @@ return require('packer').startup(function (use)
         lspconfig.lua_ls.setup { autostart = true, }
         lspconfig.clangd.setup { autostart = true, }
         lspconfig.pyright.setup { autostart = true, }
+        lspconfig.gopls.setup { autostart = true, }
     end,
     requires = {
         { 'neovim/nvim-lspconfig',
@@ -169,5 +172,6 @@ return require('packer').startup(function (use)
     -- Editable quickfix list
     use { 'gabrielpoca/replacer.nvim' }
 
-    use 'lervag/vimtex'
+    -- Write file with sudo
+    use { 'lambdalisue/suda.vim' }
 end)
