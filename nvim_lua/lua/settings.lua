@@ -43,7 +43,13 @@ opt.clipboard = 'unnamedplus' -- Standart system clipboard
 cmd 'filetype plugin indent on'
 cmd 'filetype plugin on'
 cmd 'syntax on'
-cmd 'colorscheme dayfox'
+opt.background = 'dark'
+
+local last_color_loaded = package.loaded['last-color']
+if last_color_loaded ~= false then
+    local theme = require('last-color').recall() or 'dayfox'
+    vim.cmd(('colorscheme %s'):format(theme))
+end
 
 -- Autocommands --
 
@@ -94,4 +100,3 @@ create_autocmd({"BufNewFile", "BufRead"}, {
         bo.filetype = "htmldjango"
     end,
 })
-

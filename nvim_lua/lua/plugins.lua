@@ -174,4 +174,6 @@ return require('packer').startup(function (use)
 
     -- Write file with sudo
     use { 'lambdalisue/suda.vim' }
+    -- Remember last colorscheme
+    use({ 'raddari/last-color.nvim' })
 end)
