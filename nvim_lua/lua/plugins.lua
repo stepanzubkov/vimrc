@@ -140,9 +140,7 @@ return require('packer').startup(function (use)
 
     -- HTML plugins
     -- Highlights open and close tags
-    use 'idanarye/breeze.vim'
-    -- Auto close tags
-    use 'alvan/vim-closetag'
+    use 'idanarye/breeze.vim' -- Auto close tags use 'alvan/vim-closetag'
     -- Highlights #ffffff
     use 'ap/vim-css-color'
 
@@ -165,7 +163,7 @@ return require('packer').startup(function (use)
             require('darklight').setup({
                 mode = 'colorscheme',
                 light_mode_colorscheme = 'dayfox',
-                dark_mode_colorscheme = 'onedark',
+                dark_mode_colorscheme = 'nightfox',
             })
         end
     }
