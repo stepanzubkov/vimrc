@@ -20,7 +20,7 @@ map.set('n', '<leader>fg', ':Telescope live_grep<CR>', default_opts)
 map.set('n', '<leader>fb', ':Telescope buffers<CR>', default_opts)
 
 -- Lsp messages in split window
-map.set('n', '<leader>tl', ':TroubleToggle<CR>', default_opts)
+map.set('n', '<leader>tl', ':Trouble diagnostics toggle<CR>', default_opts)
 
 -- Lsp refactoring keys. See https://github.com/neovim/nvim-lspconfig#Automatically-launching-language-servers
 map.set('n', '<leader>rn', vim.lsp.buf.rename, default_opts)
@@ -71,8 +71,10 @@ end
 local function toggleDiagnostic()
     if vim.diagnostic.is_disabled() then
         vim.diagnostic.enable()
+        require("tiny-inline-diagnostic").enable()
     else
         vim.diagnostic.disable()
+        require("tiny-inline-diagnostic").disable()
     end
 end
 

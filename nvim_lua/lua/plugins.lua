@@ -116,11 +116,23 @@ return require('packer').startup(function (use)
         'folke/trouble.nvim',
         requires = 'nvim-tree/nvim-web-devicons',
         config = function()
-            require('trouble').setup {
-                icons = false,
-                height = 15,
-                auto_preview = false,
-            }
+            require('trouble').setup({
+              icons = {
+                indent = {
+                  middle = " ",
+                  last = " ",
+                  top = " ",
+                  ws = "│  ",
+                },
+              },
+              modes = {
+                diagnostics = {
+                  groups = {
+                    { "filename", format = "{file_icon} {basename:Title} {count}" },
+                  },
+                },
+              },
+            })
         end
     }
     -- Autocomplete with lsp
@@ -174,4 +186,9 @@ return require('packer').startup(function (use)
     use { 'lambdalisue/suda.vim' }
     -- Remember last colorscheme
     use({ 'raddari/last-color.nvim' })
+
+    use {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        config = function() require("tiny-inline-diagnostic").setup() end
+    }
 end)
