@@ -69,11 +69,11 @@ local function toggleRelativenumber()
 end
 
 local function toggleDiagnostic()
-    if vim.diagnostic.is_disabled() then
+    if not vim.diagnostic.is_enabled() then
         vim.diagnostic.enable()
         require("tiny-inline-diagnostic").enable()
     else
-        vim.diagnostic.disable()
+        vim.diagnostic.enable(false)
         require("tiny-inline-diagnostic").disable()
     end
 end
@@ -105,4 +105,9 @@ map.set('n', '<C-A-u>', '<C-w>p<C-u><C-w>p', default_opts)
 map.set({'n', 'v'}, '<leader>d', '"_d', default_opts)
 map.set({'n', 'v'}, '<leader>c', '"_c', default_opts)
 
+-- Toggle diagnostics
 map.set({'n'}, '<leader>td', toggleDiagnostic, default_opts)
+
+-- References and definitions with Glance
+map.set('n', '<leader>rf', ':Glance references<CR>', default_opts)
+map.set('n', '<leader>df', ':Glance definitions<CR>', default_opts)

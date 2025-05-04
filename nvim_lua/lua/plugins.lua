@@ -38,6 +38,7 @@ return require('packer').startup(function (use)
     use 'navarasu/onedark.nvim'
     use 'shaunsingh/solarized.nvim'
     use 'EdenEast/nightfox.nvim'
+    use 'folke/tokyonight.nvim'
     -- File manager like netrw, but can be edited like normal buffer
     use {
         'stevearc/oil.nvim',
@@ -108,7 +109,7 @@ return require('packer').startup(function (use)
     ensure_installed = mason_packages,
     automatic_installation = true,
     config = function() require('mason-lspconfig').setup {} end},
-    {'jose-elias-alvarez/null-ls.nvim',
+    {'nvimtools/none-ls.nvim',
     config = function() require('configurations.null_ls') end,}},
     }
 
@@ -156,7 +157,7 @@ return require('packer').startup(function (use)
     -- Highlights #ffffff
     use 'ap/vim-css-color'
 
-    -- Beutiful start page
+    -- Beautiful start page
     use 'mhinz/vim-startify'
     -- Comments all by `gc`
     use { 'numToStr/Comment.nvim',
@@ -174,8 +175,8 @@ return require('packer').startup(function (use)
         config = function ()
             require('darklight').setup({
                 mode = 'colorscheme',
-                light_mode_colorscheme = 'dayfox',
-                dark_mode_colorscheme = 'nightfox',
+                light_mode_colorscheme = 'tokyonight-day',
+                dark_mode_colorscheme = 'tokyonight-night',
             })
         end
     }
@@ -187,8 +188,21 @@ return require('packer').startup(function (use)
     -- Remember last colorscheme
     use({ 'raddari/last-color.nvim' })
 
+    -- Replace for default virtual text diagnostics
     use {
         "rachartier/tiny-inline-diagnostic.nvim",
         config = function() require("tiny-inline-diagnostic").setup() end
     }
+
+    -- Transparent BG in one command
+    use {'xiyaowong/transparent.nvim'}
+
+    use({
+      "dnlhc/glance.nvim",
+      config = function()
+        require('glance').setup({
+          -- your configuration
+        })
+      end,
+    })
 end)
